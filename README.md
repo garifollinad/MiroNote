@@ -11,6 +11,7 @@ Features:
 - Authorization is done with simple QR code.
 - Access all Miro boards.
 - Create sticky notes of different colors.
+
 Architecture:
 - MVVM was chosen as architectural pattern. This pattern helps us seperate ui logic from backend logic. 
 - As dependency injection Dagger 2 was chosen, because it is more reliable in the market if the project is big.
