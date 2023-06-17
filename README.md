@@ -18,6 +18,4 @@ The reason of chose is that I am planning to extend the application and upload i
 - One-activity-based-app is done following Google's best practice. And smooth navigation between fragments is made.
 - Following DRY principle, I made custom views to avoid duplicated views.
 
-P.S. Screenshots of three states(no/some/all words found) are attached to repository. Thanks.
-
 Dinara Garifollina
