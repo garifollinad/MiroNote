@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/boardItem"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/margin_110dp"
+    android:background="@drawable/item_bg">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/boardImg"
+        android:layout_width="@dimen/margin_80dp"
+        android:layout_height="@dimen/margin_80dp"
+        android:layout_marginStart="@dimen/margin_15dp"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+    <TextView
+        android:id="@+id/boardName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_110dp"
+        android:theme="@style/Title02"
+        android:text="default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/boardImg" />
+
+    <TextView
+        android:id="@+id/teamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_110dp"
+        android:theme="@style/Subtitle"
+        android:text="default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boardName" />
+
+    <TextView
+        android:id="@+id/boardDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_110dp"
+        android:layout_marginEnd="@dimen/margin_20dp"
+        android:theme="@style/Detail"
+        app:layout_constraintBottom_toBottomOf="@id/boardImg"
+        android:text="modified by me, Today"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
