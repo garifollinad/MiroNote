@@ -19,4 +19,6 @@ The reason of chose is that I am planning to extend the application and upload i
 - One-activity-based-app is done following Google's best practice. And smooth navigation between fragments is made.
 - Following DRY principle, I made custom views to avoid duplicated views.
 
+App can be installed downloading the Demo.apk file.
+
 Dinara Garifollina
