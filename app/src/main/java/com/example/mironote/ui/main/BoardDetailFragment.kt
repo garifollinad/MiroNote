@@ -86,6 +86,7 @@ class BoardDetailFragment : Fragment(), Injectable {
                 }
                 is MainViewModel.Result.StickerSuccess -> {
                     valueEdit.text.clear()
+                    Toast.makeText(activity, "Sticker is added", Toast.LENGTH_LONG).show()
                 }
                 is MainViewModel.Result.Boards -> {}
                 is MainViewModel.Result.Error -> {}
