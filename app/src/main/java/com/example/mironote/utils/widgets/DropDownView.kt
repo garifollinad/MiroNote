@@ -13,12 +13,13 @@ class DropDownView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ): AppCompatTextView(ContextThemeWrapper(context, R.style.SpinnerStyle), attributeSet, defStyleAttr) {
 
-    private var selectedOption: String = "dark_green"
+    private var selectedOption: String = "yellow"
 
     private val optionsDialog = AlertDialog.Builder(context)
 
     fun setOptions(optionsTitle: String, list: List<String>?) {
         setText(optionsTitle)
+        selectedOption = optionsTitle
         val array = list?.map { item -> item as CharSequence }?.toTypedArray()
         optionsDialog.setItems(array) { dialog, which ->
             selectedOption = array?.get(which)?.toString().toString()

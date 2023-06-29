@@ -3,6 +3,7 @@ package com.example.mironote.ui.main
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,9 @@ import javax.inject.Inject
 class BoardDetailFragment : Fragment(), Injectable {
 
     private var boardId: String = ""
+    private var itemId: String ?= null
+    private var itemText: String ?= null
+    private var itemColor: String ?= null
     private lateinit var valueEdit: EditText
     private lateinit var buttonAdd: Button
     private lateinit var dropDown: DropDownView
@@ -35,6 +39,10 @@ class BoardDetailFragment : Fragment(), Injectable {
             }
     }
 
+    private val sharedViewModel: SharedViewModel by lazy {
+        ViewModelProvider(requireActivity() as MenuActivity).get(SharedViewModel::class.java)
+    }
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -45,6 +53,9 @@ class BoardDetailFragment : Fragment(), Injectable {
     override fun setArguments(args: Bundle?) {
         super.setArguments(args)
         boardId = checkNotNull(args?.getString(Constants.BOARD_ID))
+        itemId = args?.getString(Constants.ITEM_ID)
+        itemText = args?.getString(Constants.ITEM_TEXT)
+        itemColor = args?.getString(Constants.ITEM_COLOR)
     }
 
     override fun onCreateView(
@@ -65,9 +76,23 @@ class BoardDetailFragment : Fragment(), Injectable {
         buttonAdd = findViewById(R.id.buttonAdd)
         dropDown = findViewById(R.id.dropDown)
         customToolbar = findViewById(R.id.customToolbar)
+        valueEdit.setText(itemText)
 
         buttonAdd.setOnClickListener {
-            viewModel.addStickyNote(boardId = boardId, noteText = valueEdit.text.toString(), noteColor = checkNotNull(dropDown.getSelectedOption()))
+            if (itemId.isNullOrEmpty()) {
+                viewModel.addStickyNote(
+                    boardId = boardId,
+                    noteText = valueEdit.text.toString(),
+                    noteColor = checkNotNull(dropDown.getSelectedOption()))
+            } else {
+                viewModel.updateStickyNode(
+                    boardId = boardId,
+                    itemId = itemId!!,
+                    noteText = valueEdit.text.toString(),
+                    noteColor = checkNotNull(dropDown.getSelectedOption())
+                )
+            }
+
         }
 
         customToolbar.setOnClickListener {
@@ -75,7 +100,9 @@ class BoardDetailFragment : Fragment(), Injectable {
         }
 
         val listOfColors = listOf("green", "gray", "yellow", "pink", "violet", "blue", "red", "orange")
-        dropDown.setOptions("green", listOfColors)
+        var defaultColor = "yellow"
+        if (!itemColor.isNullOrEmpty()) { defaultColor = checkNotNull(itemColor)}
+        dropDown.setOptions(defaultColor, listOfColors)
     }
 
     private fun setData() {
@@ -85,11 +112,21 @@ class BoardDetailFragment : Fragment(), Injectable {
                     Toast.makeText(activity, result.error, Toast.LENGTH_LONG).show()
                 }
                 is MainViewModel.Result.StickerSuccess -> {
-                    valueEdit.text.clear()
                     Toast.makeText(activity, "Sticker is added", Toast.LENGTH_LONG).show()
+                    (requireActivity() as MenuActivity).onBackPressed()
+                    sharedViewModel.getBoardItems(boardId = boardId)
                 }
+                is MainViewModel.Result.StickerDelete -> {}
+                is MainViewModel.Result.BoardItems -> {}
                 is MainViewModel.Result.Boards -> {}
                 is MainViewModel.Result.Error -> {}
+            }
+        })
+
+        sharedViewModel.liveData.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is SharedViewModel.SharedResult.BoardItems -> {}
+                is SharedViewModel.SharedResult.Error -> {}
             }
         })
     }

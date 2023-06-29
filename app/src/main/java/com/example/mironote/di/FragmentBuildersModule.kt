@@ -2,6 +2,7 @@ package com.example.mironote.di
 
 import com.example.mironote.ui.info.InfoFragment
 import com.example.mironote.ui.main.BoardDetailFragment
+import com.example.mironote.ui.main.BoardItemsFragment
 import com.example.mironote.ui.main.MainFragment
 import com.example.mironote.ui.menu.MenuFragment
 import dagger.Module
@@ -18,6 +19,9 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeBoardDetailFragment(): BoardDetailFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeBoardItemsFragment(): BoardItemsFragment
 
     @ContributesAndroidInjector
     abstract fun contributeInfoFragment(): InfoFragment

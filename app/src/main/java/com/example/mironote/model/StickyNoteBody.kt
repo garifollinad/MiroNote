@@ -2,10 +2,22 @@ package com.example.mironote.model
 
 import com.google.gson.annotations.SerializedName
 
+data class StickyNote (
+    @SerializedName("id") val id : String,
+    @SerializedName("data") val data : Data,
+    @SerializedName("style") val style : Stylee,
+    @SerializedName("position") val position : Position,
+)
+
 data class StickyNoteBody (
     @SerializedName("data") val data : Data,
     @SerializedName("style") val style : Stylee,
     @SerializedName("position") val position : Position,
+)
+
+data class ItemResponse (
+    @SerializedName("size") val size : Int,
+    @SerializedName("data") val data : List<StickyNote>
 )
 
 data class Stylee (

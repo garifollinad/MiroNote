@@ -3,6 +3,7 @@ package com.example.mironote.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.mironote.ui.main.MainViewModel
+import com.example.mironote.ui.main.SharedViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -21,6 +22,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     internal abstract fun provideMainViewModel(viewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SharedViewModel::class)
+    internal abstract fun provideSharedViewModel(viewModel: SharedViewModel): ViewModel
 
 }
 

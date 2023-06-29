@@ -86,8 +86,8 @@ class MainFragment : Fragment(), Injectable {
         override fun onBoardClick(model: Board) {
             val bundle = bundleOf(Constants.BOARD_ID to model.id)
             (requireActivity() as MenuActivity).navigateTo(
-                fragment = BoardDetailFragment.newInstance(bundle),
-                tag = Screen.BOARD_DETAIL.name,
+                fragment = BoardItemsFragment.newInstance(bundle),
+                tag = Screen.BOARD_ITEMS.name,
                 addToStack = true
             )
         }
@@ -108,7 +108,9 @@ class MainFragment : Fragment(), Injectable {
                 is MainViewModel.Result.Boards -> {
                     boardAdapter.initBoards(result.boardsList)
                 }
+                is MainViewModel.Result.BoardItems -> {}
                 is MainViewModel.Result.StickerSuccess -> {}
+                is MainViewModel.Result.StickerDelete -> {}
                 is MainViewModel.Result.StickerError -> {}
                 is MainViewModel.Result.Error -> {
                     Toast.makeText(activity, "token is expired", Toast.LENGTH_LONG).show()
