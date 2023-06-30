@@ -83,13 +83,13 @@ class BoardDetailFragment : Fragment(), Injectable {
                 viewModel.addStickyNote(
                     boardId = boardId,
                     noteText = valueEdit.text.toString(),
-                    noteColor = checkNotNull(dropDown.getSelectedOption()))
+                    noteColor = checkNotNull(getSelectedColor()))
             } else {
                 viewModel.updateStickyNode(
                     boardId = boardId,
                     itemId = itemId!!,
                     noteText = valueEdit.text.toString(),
-                    noteColor = checkNotNull(dropDown.getSelectedOption())
+                    noteColor = checkNotNull(getSelectedColor())
                 )
             }
 
@@ -99,10 +99,58 @@ class BoardDetailFragment : Fragment(), Injectable {
             (requireActivity() as MenuActivity).onBackPressed()
         }
 
-        val listOfColors = listOf("green", "gray", "yellow", "pink", "violet", "blue", "red", "orange")
-        var defaultColor = "yellow"
-        if (!itemColor.isNullOrEmpty()) { defaultColor = checkNotNull(itemColor)}
-        dropDown.setOptions(defaultColor, listOfColors)
+        val listOfColors = listOf(
+            "Social (immediate)", "Social (enabling)", "Social (structural)",
+            "Economic (immediate)", "Economic (enabling)", "Economic (structural)",
+            "Environmental (immediate)", "Environmental (enabling)", "Environmental (structural)",
+            "Individual (immediate)", "Individual (enabling)", "Individual (structural)",
+            "Technical (immediate)", "Technical (enabling)", "Technical (structural)"
+        )
+        dropDown.setOptions(getDimension(), listOfColors)
+    }
+
+    private fun getSelectedColor(): String {
+        val noteColor = when (dropDown.getSelectedOption()) {
+            "Social (immediate)" -> "light_yellow"
+            "Social (enabling)" -> "yellow"
+            "Social (structural)" -> "orange"
+            "Economic (immediate)" -> "light_pink"
+            "Economic (enabling)" -> "dark_pink"
+            "Economic (structural)" -> "violet"
+            "Environmental (immediate)" -> "light_green"
+            "Environmental (enabling)" -> "green"
+            "Environmental (structural)" -> "dark_green"
+            "Individual (immediate)" -> "gray"
+            "Individual (enabling)" -> "red"
+            "Individual (structural)" -> "cyan"
+            "Technical (immediate)" -> "light_blue"
+            "Technical (enabling)" -> "blue"
+            "Technical (structural)" -> "dark_blue"
+            else -> "#F0D352"
+        }
+        return noteColor
+    }
+
+    private fun getDimension(): String {
+        val dimension = when (itemColor) {
+            "light_yellow" -> "Social (immediate)"
+            "yellow" -> "Social (enabling)"
+            "orange" -> "Social (structural)"
+            "light_pink" -> "Economic (immediate)"
+            "dark_pink" -> "Economic (enabling)"
+            "violet" -> "Economic (structural)"
+            "light_green" -> "Environmental (immediate)"
+            "green" -> "Environmental (enabling)"
+            "dark_green" -> "Environmental (structural)"
+            "gray" -> "Individual (immediate)"
+            "red" -> "Individual (enabling)"
+            "cyan" -> "Individual (structural)"
+            "light_blue" -> "Technical (immediate)"
+            "blue" -> "Technical (enabling)"
+            "dark_blue" -> "Technical (structural)"
+            else -> "Social (immediate)"
+        }
+        return dimension
     }
 
     private fun setData() {

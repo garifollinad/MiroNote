@@ -10,7 +10,7 @@ This is an Android application that interacts with Miro board and transfers the 
 Features:
 - Authorization is done with simple QR code.
 - Access all Miro boards.
-- Create/Update/Delete sticky notes through selecting different colors.
+- Create/Update/Delete sticky notes through selecting sustainability dimension and category.
 
 Architecture:
 - MVVM was chosen as architectural pattern. This pattern helps us separate ui logic from backend logic. 
@@ -20,6 +20,6 @@ The reason of chose is that I am planning to extend the application and upload i
 - SharedViewModel was used to share data between fragments.
 - Following DRY principle, I made custom views to avoid duplicated views.
 
-App can be installed downloading the SusafApp.apk file. Template for SusAD diagram is also attached to the project.
+App can be installed downloading the SusAFApp.apk file. Template for SusAD diagram is also attached to the project.
 
 Dinara Garifollina

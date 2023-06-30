@@ -51,15 +51,23 @@ class ItemAdapter (
 
             boardName.text = item.data.content
             val noteColor = when (item.style.fillColor) {
-                "green" -> "#D4E17C"
-                "gray" -> "#F6F7F9"
-                "yellow" -> "#F0D352"
+                "light_yellow" -> "#FEF9BA"
+                "yellow" -> "#EFD352"
+                "orange" -> "#F2A25B"
+                "light_pink" -> "#F8D1DF"
                 "pink" -> "#E1A2C1"
-                "violet" -> "#C0A3D0"
+                "dark_pink" -> "#DE99BB"
+                "violet" -> "#C1A4D0"
+                "light_green" -> "#DBF49E"
+                "green" -> "#CEDE6D"
+                "dark_green" -> "#A1D083"
+                "gray" -> "#F5F6F8"
+                "red" -> "#E3989F"
+                "cyan" -> "#7FC4BC"
+                "light_blue" -> "#AFCCF1"
                 "blue" -> "#89D6F6"
-                "red" -> "#E5A2A9"
-                "orange" -> "#F1A25B"
-                else -> "#F0D352"
+                "dark_blue" -> "#A1AAF0"
+                else -> "#FEF9BA"
             }
 
             boardImg.getDrawable().setColorFilter(Color.parseColor(noteColor), PorterDuff.Mode.SRC_OVER)
