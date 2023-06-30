@@ -2,7 +2,7 @@
 
 This is an Android application that interacts with Miro board and transfers the notes of users to the board in real time.
 
-![Demo](demo.jpg)
+![Demo](demo_img.jpg)
 
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/garifollinad/MiroNote/pulls)
 [![made with hearth by garifollinad](https://img.shields.io/badge/made%20with%20%E2%99%A5%20by-garifollinad-ff1414.svg?style=flat-square)](https://github.com/garifollinad)
