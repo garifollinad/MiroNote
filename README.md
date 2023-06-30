@@ -20,6 +20,6 @@ The reason of chose is that I am planning to extend the application and upload i
 - SharedViewModel was used to share data between fragments.
 - Following DRY principle, I made custom views to avoid duplicated views.
 
-App can be installed downloading the SusAFApp.apk file. Template for SusAD diagram is also attached to the project.
+App can be installed downloading the MiroNote.apk file. Template for SusAD diagram is also attached to the project.
 
 Dinara Garifollina
